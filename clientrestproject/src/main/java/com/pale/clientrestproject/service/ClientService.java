@@ -6,6 +6,7 @@ import com.pale.clientrestproject.errorhandling.InvalidIDNumberException;
 import com.pale.clientrestproject.model.Client;
 import com.pale.clientrestproject.repository.IClientRepo;
 import com.pale.clientrestproject.validation.IDValidator;
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class ClientService {
+
+
     @Autowired
     private IClientRepo clientRepo;
     @Autowired
-    private IDValidator idValidator;
+    IDValidator idValidator;
     private static final Logger logger = LoggerFactory.getLogger(ClientService.class);
 
     public Client addClient(Client client) throws ClientUniqueException {
