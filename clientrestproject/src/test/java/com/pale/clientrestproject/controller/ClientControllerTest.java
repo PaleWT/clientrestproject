@@ -53,6 +53,23 @@ class ClientControllerTest {
     }
 
     @Test
+    void updateClient() throws Exception {
+        RequestBuilder requestBuilder = post("/client/api/v1/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{    \"firstName\": \"Paul\",\n" +
+                        "    \"lastName\": \"Thelele\",\n" +
+                        "    \"mobileNumber\": \"0846521345\",\n" +
+                        "    \"idNumber\": \"Please Enter Valid SA ID\",\n" + // ID validated to SA ID only
+                        "    \"physicalAddress\": \"285 West Ave, Centurio Die Hoewes\"}");
+
+        MvcResult result = mockMvc.perform(requestBuilder)
+                .andReturn();
+        int responseCode = result.getResponse().getStatus();
+        System.out.println(responseCode);
+        assertEquals(201, responseCode);
+    }
+
+    @Test
     void getByFirstName() throws Exception {
         RequestBuilder requestBuilder = get("/client/api/v1/idnumber")
                 .contentType(MediaType.APPLICATION_JSON)

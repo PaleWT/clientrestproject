@@ -2,6 +2,7 @@ package com.pale.clientrestproject.controller;
 
 import com.pale.clientrestproject.errorhandling.ClientNotFoundException;
 import com.pale.clientrestproject.errorhandling.ClientUniqueException;
+import com.pale.clientrestproject.errorhandling.InvalidIDNumberException;
 import com.pale.clientrestproject.model.Client;
 import com.pale.clientrestproject.service.ClientService;
 import jakarta.validation.Valid;
@@ -23,6 +24,12 @@ public class ClientController {
     public ResponseEntity<Client> addClient(@RequestBody @Valid Client client) throws ClientUniqueException {
             Client newClient = clientService.addClient(client);
             return  new ResponseEntity<>(newClient, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Client> updateClient(@RequestBody @Valid Client client) throws ClientUniqueException, InvalidIDNumberException {
+        Client clientUpdate = clientService.updateClient(client);
+        return new ResponseEntity<>(clientUpdate, HttpStatus.OK);
     }
 
     @GetMapping("/first_name")

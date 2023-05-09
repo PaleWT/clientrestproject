@@ -48,8 +48,6 @@ public class ClientService {
         } else {
             return clientRepo.save(client);
         }
-
-
     }
 
     public List<Client> findByFirstName(String firstName) throws ClientNotFoundException {
